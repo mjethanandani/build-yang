@@ -20,8 +20,14 @@ RUN apt-get -y install erlang libxml2-dev
 RUN cd /git && git clone https://github.com/mbj4668/yanger.git
 RUN cd /git/yanger; source env.sh; make
 ENV PATH $PATH:/git/yanger/bin/
+
+# Add rfcfold
+RUN cd /git && git clone https://github.com/ietf-tools/rfcfold.git
+ENV PATH $PATH:/git/rfcfold/
+
 RUN mkdir -p /usr/local/
 ADD idnits-2.16.04/ /usr/local/idnits-2.16.04/
+ENV PATH $PATH:/usr/local/idnits-2.16.04/
 
 # Tools to build yanglint
 RUN apt-get -y install cmake
@@ -31,7 +37,6 @@ RUN cd /git/libyang && mkdir build && cd build && cmake .. && make && make insta
 RUN ldconfig
 
 # Button up the remaining paths and links
-ENV PATH $PATH:/usr/local/idnits-2.16.04/
 RUN ln -s /usr/bin/sed /usr/bin/gsed
 
 # Remove alternative awk and replace it with GNU awk

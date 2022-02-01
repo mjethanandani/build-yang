@@ -1,4 +1,4 @@
-VER=1.3
+VER=1.4
 container=mjethanandani/build-yang
 
 .PHONY: container push all clean
@@ -13,6 +13,10 @@ container:
 
 push:
 	docker push $(container):$(VER)
+
+tag:
+	docker tag $(container):$(VER) $(container):latest
+	docker push $(container):latest
 
 clean:
 	-docker rm $(leftover)
