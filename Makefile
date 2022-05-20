@@ -1,4 +1,4 @@
-VER=1.4
+VER=1.5
 container=mjethanandani/build-yang
 
 .PHONY: container push all clean
