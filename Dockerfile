@@ -21,6 +21,7 @@ RUN cd /git && git clone https://github.com/mbj4668/yanger.git
 RUN cd /git/yanger; source env.sh; make
 ENV PATH $PATH:/git/yanger/bin/
 
+# Tools to build pyang
 RUN cd /git && git clone https://github.com/mbj4668/pyang.git
 RUN cd /git/pyang; source env.sh; make
 ENV PATH $PATH:/git/pyang/bin/
@@ -29,6 +30,7 @@ ENV PATH $PATH:/git/pyang/bin/
 RUN cd /git && git clone https://github.com/ietf-tools/rfcfold.git
 ENV PATH $PATH:/git/rfcfold
 
+# Add idnits
 RUN cd /git && git clone https://github.com/ietf-tools/idnits.git
 ENV PATH $PATH:/git/idnits
 
