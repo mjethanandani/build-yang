@@ -11,7 +11,7 @@ RUN apt-get -y install rsync
 # Create all the links needed
 RUN rm /usr/bin/pip && ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip
-RUN pip install pyang xml2rfc xym
+RUN pip install xml2rfc xym
 
 RUN mkdir /git
 # Tools to build yanger
@@ -21,13 +21,16 @@ RUN cd /git && git clone https://github.com/mbj4668/yanger.git
 RUN cd /git/yanger; source env.sh; make
 ENV PATH $PATH:/git/yanger/bin/
 
+RUN cd /git && git clone https://github.com/mbj4668/pyang.git
+RUN cd /git/pyang; source env.sh; make
+ENV PATH $PATH:/git/pyang/bin/
+
 # Add rfcfold
 RUN cd /git && git clone https://github.com/ietf-tools/rfcfold.git
-ENV PATH $PATH:/git/rfcfold/
+ENV PATH $PATH:/git/rfcfold
 
-RUN mkdir -p /usr/local/
-ADD idnits-2.17.1/ /usr/local/idnits-2.17.1/
-ENV PATH $PATH:/usr/local/idnits-2.17.1/
+RUN cd /git && git clone https://github.com/ietf-tools/idnits.git
+ENV PATH $PATH:/git/idnits
 
 # Tools to build yanglint
 RUN apt-get -y install cmake
