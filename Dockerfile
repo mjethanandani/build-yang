@@ -11,7 +11,7 @@ RUN apt-get -y install rsync
 # Create all the links needed
 RUN rm /usr/bin/pip && ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip
-RUN pip install xml2rfc xym
+RUN pip install xml2rfc xym codespell
 
 RUN mkdir /git
 # Tools to build yanger
@@ -31,7 +31,7 @@ RUN cd /git && git clone https://github.com/ietf-tools/rfcfold.git
 ENV PATH $PATH:/git/rfcfold
 
 # Add idnits
-RUN cd /git && git clone https://github.com/ietf-tools/idnits.git
+RUN cd /git && git clone -b v2 https://github.com/ietf-tools/idnits.git
 ENV PATH $PATH:/git/idnits
 
 # Tools to build yanglint
