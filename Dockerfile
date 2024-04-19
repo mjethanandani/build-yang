@@ -31,7 +31,7 @@ RUN cd /git && git clone https://github.com/ietf-tools/rfcfold.git
 ENV PATH $PATH:/git/rfcfold
 
 # Add idnits
-RUN cd /git && git clone https://github.com/ietf-tools/idnits.git
+RUN cd /git && git clone -b v2 https://github.com/ietf-tools/idnits.git
 ENV PATH $PATH:/git/idnits
 
 # Tools to build yanglint
