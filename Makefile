@@ -13,8 +13,8 @@ container:
 
 push:
 	docker push $(container):$(VER)
-	docker push $(container):latest
 	docker tag $(container):$(VER) $(container):latest
+	docker push $(container):latest
 
 clean:
 	-docker rm $(leftover)
